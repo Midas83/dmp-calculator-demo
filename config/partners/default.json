@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "partnerId": "default",
+  "partnerName": "Consolidated Credit",
+  "branding": {
+    "logoUrl": "",
+    "logoAlt": "",
+    "primaryColor": "#0E5A63",
+    "accentColor": "#147A50",
+    "textColor": "#15201F",
+    "mutedTextColor": "#5E6B68",
+    "backgroundColor": "#FFFFFF",
+    "surfaceColor": "#F3F6F5",
+    "borderColor": "#DDE5E2",
+    "fontFamily": "'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+    "fontUrl": "https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap",
+    "borderRadius": 12
+  },
+  "content": {
+    "title": "See how much a debt management plan could save you",
+    "subtitle": "Takes about a minute. No personal details needed.",
+    "providerName": "Consolidated Credit",
+    "showPoweredBy": true
+  },
+  "cta": {
+    "title": "Get your exact numbers",
+    "text": "A certified credit counselor can review your cards with you in a free call.",
+    "phoneDisplay": "1-800-000-0000",
+    "noSavingsTitle": "Talk through your options",
+    "noSavingsText": "A certified credit counselor can review your budget with you in a free call and tell you if a plan fits.",
+    "phoneHref": "+18000000000",
+    "note": ""
+  },
+  "program": {
+    "dmpApr": 8,
+    "monthlyFee": 40,
+    "setupFee": 0,
+    "termDefault": 48,
+    "termMin": 36,
+    "termMax": 60,
+    "termStep": 6,
+    "minDebt": 5000
+  },
+  "defaults": {
+    "currentApr": 22.36,
+    "currentAprSource": "Federal Reserve G.19 release of Nov. 6, 2026: average APR on credit card accounts assessed interest, August 2026",
+    "debt": 15000
+  },
+  "minimumPayment": {
+    "percentOfBalance": 1,
+    "floor": 25
+  },
+  "limits": {
+    "debtMin": 500,
+    "debtMax": 250000,
+    "aprMin": 10,
+    "aprMax": 40
+  }
+}

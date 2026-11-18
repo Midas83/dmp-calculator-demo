@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partner Site Demo</title>
+  <style>
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; background: #eef1f4; color: #222; }
+    .bar { background: #222; color: #fff; padding: 14px 20px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .bar strong { margin-right: auto; }
+    .bar a { color: #9fd3ff; }
+    .bar a[aria-current] { color: #fff; font-weight: bold; text-decoration: none; }
+    .page { max-width: 980px; margin: 0 auto; padding: 24px 16px 60px; }
+    .fake-copy { color: #555; max-width: 640px; }
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,.08); overflow: hidden; }
+    pre { background: #1e1e1e; color: #dcdcdc; padding: 14px; border-radius: 8px; overflow-x: auto; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="bar">
+    <strong>Demo: a partner's website</strong>
+    <span>Partner config:</span>
+    <a href="?partner=default">default</a>
+    <a href="?partner=sample-partner">sample-partner</a>
+    <a href="?partner=does-not-exist">missing (falls back)</a>
+  </div>
+
+  <div class="page">
+    <h1>Get help with credit card debt</h1>
+    <p class="fake-copy">This text stands in for the partner's own page. The calculator below loads inside an iframe, exactly as it will on a real partner site.</p>
+
+    <div class="card" id="calc-slot"></div>
+
+    <h2>Embed code for this partner</h2>
+    <pre id="snippet"></pre>
+  </div>
+
+  <script>
+    (function () {
+      var partner = new URLSearchParams(location.search).get('partner') || 'default';
+      document.querySelectorAll('.bar a').forEach(function (a) {
+        if (a.getAttribute('href') === '?partner=' + partner) a.setAttribute('aria-current', 'page');
+      });
+      // Local test: the widget is on port 8770 (a different origin). Hosted: the site root.
+      var host = location.port === '8771' ? 'http://127.0.0.1:8770/' : new URL('../', location.href).href;
+      var s = document.createElement('script');
+      s.src = host + 'embed.js';
+      s.async = true;
+      s.setAttribute('data-partner', partner);
+      s.setAttribute('data-target', '#calc-slot');
+      document.body.appendChild(s);
+      document.getElementById('snippet').textContent =
+        '<div id="calc-slot"></div>\n<script src="' + host + 'embed.js" data-partner="' + partner + '" data-target="#calc-slot" async><\/script>';
+    })();
+  </script>
+</body>
+</html>

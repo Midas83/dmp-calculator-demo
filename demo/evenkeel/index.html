@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Evenkeel | Financial wellness benefit for employees (demo site)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+  <style>
+    :root {
+      --harbor: #1B2A4E;
+      --harbor-deep: #131F3B;
+      --tide: #1C7C6C;
+      --marigold: #F2B632;
+      --mist: #F2F5FA;
+      --paper: #FFFFFF;
+      --ink: #172033;
+      --slate: #5A6478;
+      --rule: #DCE2EC;
+      --display: "Bricolage Grotesque", "Instrument Sans", system-ui, sans-serif;
+      --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --wrap: 1140px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: var(--body); font-size: 17px; line-height: 1.55; color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
+    img, svg { display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: var(--display); letter-spacing: -0.02em; line-height: 1.08; margin: 0; text-wrap: balance; }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); font-weight: 700; }
+    h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+    p { margin: 0; }
+    :focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; border-radius: 4px; }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    .lede { font-size: 1.15rem; color: var(--slate); max-width: 34em; }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 1rem; text-decoration: none; border: 2px solid transparent; cursor: pointer; }
+    .btn-solid { background: var(--marigold); color: var(--harbor-deep); }
+    .btn-solid:hover { background: #F7C552; }
+    .btn-line { border-color: currentColor; }
+    .btn-line:hover { background: rgba(255,255,255,.1); }
+    .btn-dark { background: var(--harbor); color: #fff; }
+    .btn-dark:hover { background: var(--harbor-deep); }
+
+    /* demo notice */
+    .demo-note { background: var(--marigold); color: var(--harbor-deep); font-size: .88rem; text-align: center; padding: 8px 16px; }
+    .demo-note a { font-weight: 600; }
+
+    /* header */
+    .site-head { background: var(--harbor); color: #fff; }
+    .site-head .wrap { display: flex; align-items: center; gap: 28px; min-height: 76px; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: -0.03em; text-decoration: none; margin-right: auto; }
+    .nav { display: flex; gap: 26px; font-size: .97rem; }
+    .nav a { text-decoration: none; opacity: .86; padding: 12px 0; }
+    .nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+    .site-head .btn { min-height: 44px; padding: 8px 18px; }
+
+    /* hero */
+    .hero { background: var(--harbor); color: #fff; padding: 56px 0 0; overflow: hidden; }
+    .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 56px; align-items: end; }
+    .hero-copy { padding-bottom: 72px; }
+    .hero h1 { font-size: clamp(2.5rem, 6.2vw, 4.4rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1; }
+    .hero h1 span { display: block; color: var(--marigold); }
+    .hero .lede { color: #C9D2E6; margin-top: 24px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .hero-foot { margin-top: 28px; font-size: .93rem; color: #A9B5CF; }
+
+    /* pay stub: the page's one visual. It shows where a paycheck goes. */
+    .stub { background: #FDFEFF; color: var(--ink); border-radius: 14px 14px 0 0; padding: 26px 28px 30px; font-variant-numeric: tabular-nums; box-shadow: 0 -8px 40px rgba(6, 12, 30, .45); transform: rotate(-1.6deg); transform-origin: bottom left; margin-bottom: -6px; }
+    .stub-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+    .stub-head strong { font-family: var(--display); font-size: 1.15rem; }
+    .stub-head span { font-size: .85rem; color: var(--slate); }
+    .stub-who { font-size: .9rem; color: var(--slate); margin: 10px 0 14px; }
+    .stub dl { margin: 0; }
+    .stub-row { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; font-size: .98rem; }
+    .stub-row dt { color: var(--slate); }
+    .stub-row dd { margin: 0; font-weight: 600; }
+    .stub-row.total { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 6px 0 14px; padding: 10px 0; }
+    .stub-row.total dt, .stub-row.total dd { color: var(--ink); font-weight: 700; }
+    .stub-sub { font-size: .85rem; font-weight: 600; margin: 0 0 2px; }
+    .stub-row.flag { position: relative; margin: 4px -10px; padding: 9px 10px; border-radius: 6px; isolation: isolate; }
+    .stub-row.flag::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 6px; background: var(--marigold); transform-origin: left; animation: mark .9s .5s cubic-bezier(.2,.7,.2,1) both; }
+    .stub-row.flag dt, .stub-row.flag dd { color: var(--harbor-deep); font-weight: 700; }
+    @keyframes mark { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    .stub-note { margin: 8px 0 6px; font-size: .9rem; color: var(--tide); font-weight: 600; }
+    .stub-row.left dt, .stub-row.left dd { color: var(--ink); }
+
+    /* calculator band */
+    .calc { background: var(--mist); padding: 80px 0 88px; }
+    .calc .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start; }
+    .calc-copy { position: sticky; top: 32px; }
+    .calc-copy .lede { margin-top: 18px; font-size: 1.08rem; }
+    .calc-points { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; }
+    .calc-points li { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; }
+    .calc-points svg { margin-top: 3px; color: var(--tide); }
+    .calc-card { background: var(--paper); border-radius: 18px; border: 1px solid var(--rule); box-shadow: 0 18px 50px -24px rgba(27, 42, 78, .35); overflow: hidden; min-height: 620px; }
+
+    /* what employees get */
+    .gets { padding: 96px 0; }
+    .gets-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: end; margin-bottom: 48px; }
+    .gets-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 56px; margin: 0; }
+    .get { display: grid; grid-template-columns: 44px 1fr; gap: 18px; padding: 28px 0; border-top: 1px solid var(--rule); }
+    .get svg { color: var(--harbor); }
+    .get dt { font-family: var(--display); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.01em; line-height: 1.2; }
+    .get dd { margin: 8px 0 0; color: var(--slate); grid-column: 2; }
+
+    /* employers: a real sequence, so it is numbered */
+    .steps { background: var(--harbor); color: #fff; padding: 96px 0; }
+    .steps .lede { color: #C9D2E6; margin-top: 16px; }
+    .steps ol { list-style: none; counter-reset: s; margin: 52px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
+    .steps li { counter-increment: s; border-top: 3px solid var(--marigold); padding-top: 20px; }
+    .steps li::before { content: counter(s); display: block; font-family: var(--display); font-weight: 800; font-size: 3.4rem; line-height: 1; color: var(--marigold); margin-bottom: 14px; }
+    .steps li p { color: #C9D2E6; margin-top: 10px; }
+
+    /* results */
+    .results { padding: 96px 0; }
+    .results .wrap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: center; }
+    .figs { display: grid; gap: 0; margin: 28px 0 0; }
+    .fig { display: grid; grid-template-columns: 190px 1fr; gap: 24px; align-items: baseline; padding: 22px 0; border-top: 1px solid var(--rule); }
+    .fig:last-child { border-bottom: 1px solid var(--rule); }
+    .fig dt { font-family: var(--display); font-weight: 800; font-size: 3rem; letter-spacing: -0.04em; line-height: 1; color: var(--tide); }
+    .fig dd { margin: 0; }
+    .small { font-size: .88rem; color: var(--slate); margin-top: 16px; }
+    blockquote { margin: 0; }
+    blockquote p { font-family: var(--display); font-weight: 500; font-size: clamp(1.4rem, 2.6vw, 1.85rem); line-height: 1.25; letter-spacing: -0.015em; }
+    blockquote footer { margin-top: 20px; color: var(--slate); font-size: .97rem; }
+    blockquote footer strong { color: var(--ink); display: block; }
+
+    /* questions */
+    .faq { background: var(--mist); padding: 88px 0; }
+    .faq .wrap { max-width: 820px; }
+    .faq details { border-top: 1px solid #C9D2E0; }
+    .faq details:last-of-type { border-bottom: 1px solid #C9D2E0; }
+    .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; font-weight: 600; font-size: 1.1rem; min-height: 48px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: ""; flex: none; width: 10px; height: 10px; border-right: 2px solid var(--harbor); border-bottom: 2px solid var(--harbor); transform: rotate(45deg); transition: transform .15s; margin-right: 6px; }
+    .faq details[open] summary::after { transform: rotate(-135deg); }
+    .faq details p { color: var(--slate); padding: 0 40px 22px 0; max-width: 60ch; }
+    .faq h2 { margin-bottom: 32px; }
+
+    /* closing */
+    .close { padding: 96px 0; text-align: center; }
+    .close h2 { max-width: 18em; margin: 0 auto; }
+    .close p { margin: 18px auto 0; }
+    .close .btn { margin-top: 30px; }
+
+    .site-foot { background: var(--harbor-deep); color: #A9B5CF; font-size: .9rem; padding: 40px 0 48px; }
+    .site-foot .wrap { display: grid; gap: 14px; }
+    .site-foot .logo { color: #fff; font-size: 1.2rem; margin: 0; }
+    .site-foot p { max-width: 78ch; }
+
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      .hero .wrap, .calc .wrap, .results .wrap, .gets-head { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+      .hero-copy { padding-bottom: 8px; }
+      .stub { max-width: 440px; margin-left: 4px; }
+      .calc { padding: 56px 0 64px; }
+      .calc-copy { position: static; }
+      .gets, .steps, .results, .close { padding: 64px 0; }
+      .gets-list { grid-template-columns: minmax(0, 1fr); }
+      .steps ol { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+      .fig { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+    }
+    @media (max-width: 520px) {
+      body { font-size: 16px; }
+      .wrap { padding: 0 16px; }
+      .site-head .btn { display: none; }
+      .stub { padding: 20px 18px 24px; }
+      .calc-card { border-radius: 14px; margin: 0 -4px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .stub-row.flag::before { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <p class="demo-note">Evenkeel is a fictional company. This page is a demo for the embedded debt calculator. <a href="../">Open the plain test page</a></p>
+
+  <header class="site-head">
+    <div class="wrap">
+      <a class="logo" href="#top" aria-label="Evenkeel home">
+        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 12h24" stroke="#F2B632" stroke-width="3.4" stroke-linecap="round"/><path d="M6 18c2.6 5.4 15.4 5.4 18 0" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg>
+        Evenkeel
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#employees">For employees</a>
+        <a href="#employers">For employers</a>
+        <a href="#results">Results</a>
+        <a href="#questions">Questions</a>
+      </nav>
+      <a class="btn btn-solid" href="#demo">Book a demo</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <h1>Money stress comes to work. <span>Give your people a way out of it.</span></h1>
+          <p class="lede">Evenkeel is a financial wellness benefit. Employees get a coach, an emergency savings account, and help to pay off credit card debt. You pay per employee. They pay nothing.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#demo">Book a demo</a>
+            <a class="btn btn-line" href="#calculator">Try the debt calculator</a>
+          </div>
+          <p class="hero-foot">Works with your payroll system. Most employers launch in four weeks.</p>
+        </div>
+
+        <div class="stub" role="img" aria-label="Sample pay statement. Net pay is $1,627.60. After rent, car, groceries and $215 in credit card minimum payments, $127.60 is left over.">
+          <div class="stub-head"><strong>Pay statement</strong><span>Oct 1 to Oct 15</span></div>
+          <p class="stub-who">Maya R., warehouse lead</p>
+          <dl>
+            <div class="stub-row"><dt>Gross pay</dt><dd>$2,140.00</dd></div>
+            <div class="stub-row"><dt>Taxes and benefits</dt><dd>−$512.40</dd></div>
+            <div class="stub-row total"><dt>Net pay</dt><dd>$1,627.60</dd></div>
+          </dl>
+          <p class="stub-sub">Where it goes</p>
+          <dl>
+            <div class="stub-row"><dt>Rent</dt><dd>$780.00</dd></div>
+            <div class="stub-row"><dt>Car and gas</dt><dd>$265.00</dd></div>
+            <div class="stub-row"><dt>Groceries</dt><dd>$240.00</dd></div>
+            <div class="stub-row flag"><dt>Credit card minimums</dt><dd>$215.00</dd></div>
+          </dl>
+          <p class="stub-note">This is the line a coach starts with.</p>
+          <dl>
+            <div class="stub-row left"><dt>Left over</dt><dd>$127.60</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="calc" id="calculator" aria-labelledby="calc-title">
+      <div class="wrap">
+        <div class="calc-copy">
+          <h2 id="calc-title">Carrying card debt? See what a plan could save.</h2>
+          <p class="lede">Credit card debt is the most frequent reason employees call an Evenkeel coach. This calculator compares your payments now with a nonprofit debt management plan.</p>
+          <ul class="calc-points">
+            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>It takes about a minute.</span></li>
+            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>It asks for no name, no email, and no credit check.</span></li>
+            <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span>Your employer does not see your numbers.</span></li>
+          </ul>
+        </div>
+        <div class="calc-card" id="calc-slot"></div>
+      </div>
+    </section>
+
+    <section class="gets" id="employees" aria-labelledby="gets-title">
+      <div class="wrap">
+        <div class="gets-head">
+          <h2 id="gets-title">What employees get</h2>
+          <p class="lede">Each employee starts with a 30-minute call. The coach makes a plan with them and stays with them until it is done.</p>
+        </div>
+        <dl class="gets-list">
+          <div class="get">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="20" cy="14" r="6"/><path d="M8 34c1.6-7 6.4-10 12-10s10.400 3 12 10"/></svg>
+            <dt>A coach who knows their name</dt>
+            <dd>One certified financial coach for each employee, by phone, video, or text. Coaches earn no commission and sell no products.</dd>
+          </div>
+          <div class="get">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 30V14l14-8 14 8v16"/><path d="M6 30h28M14 30V20h12v10"/></svg>
+            <dt>Emergency savings from each paycheck</dt>
+            <dd>Employees set an amount, and payroll moves it to a savings account in their name. They can take the money out at any time.</dd>
+          </div>
+          <div class="get">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="30" height="20" rx="3"/><path d="M5 17h30M11 25h6"/></svg>
+            <dt>A way out of credit card debt</dt>
+            <dd>Coaches connect employees with a nonprofit credit counseling agency. A debt management plan can lower interest rates and set one monthly payment.</dd>
+          </div>
+          <div class="get">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 32V8M8 32h24"/><path d="m13 25 6-7 5 4 7-10"/></svg>
+            <dt>Help with the large decisions</dt>
+            <dd>A first home, student loans, a new baby, a parent who needs care. The coach gives clear steps for each one.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="steps" id="employers" aria-labelledby="steps-title">
+      <div class="wrap">
+        <h2 id="steps-title">How it works for employers</h2>
+        <p class="lede">Your team does three things. We do the remainder.</p>
+        <ol>
+          <li>
+            <h3>Connect payroll</h3>
+            <p>We connect to your payroll system for eligibility and savings deductions. Your IT team approves one data connection.</p>
+          </li>
+          <li>
+            <h3>Tell your people</h3>
+            <p>We supply the launch emails, the break-room posters, and a 20-minute session for managers. Employees sign up on their phones.</p>
+          </li>
+          <li>
+            <h3>See the results</h3>
+            <p>Each quarter you get a report on sign-ups, savings balances, and debt paid off. The report shows totals only, not individuals.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="results" id="results" aria-labelledby="results-title">
+      <div class="wrap">
+        <blockquote>
+          <p>“Requests for pay advances went down in the first quarter. Our supervisors saw the difference before the report showed it.”</p>
+          <footer><strong>Dana Okafor</strong>Director of Total Rewards, Larkfield Logistics</footer>
+        </blockquote>
+        <div>
+          <h2 id="results-title">What changes in the first year</h2>
+          <dl class="figs">
+            <div class="fig"><dt>41%</dt><dd>of eligible employees talk to a coach in the first 12 months.</dd></div>
+            <div class="fig"><dt>$1,180</dt><dd>is the median emergency savings balance after one year.</dd></div>
+            <div class="fig"><dt>$6,400</dt><dd>is the average credit card debt paid off by employees who start a plan.</dd></div>
+          </dl>
+          <p class="small">These figures and this customer are examples for the demo. They are not real data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="questions" aria-labelledby="faq-title">
+      <div class="wrap">
+        <h2 id="faq-title">Questions employers ask</h2>
+        <details>
+          <summary>Does the employer see an employee's finances?</summary>
+          <p>No. Employers get totals for the full workforce. Coach conversations, calculator entries, and account balances stay private.</p>
+        </details>
+        <details>
+          <summary>Who provides the debt management plans?</summary>
+          <p>A nonprofit credit counseling agency provides the plans. Its certified counselors review each employee's cards and budget in a free call. Evenkeel does not receive a fee for a referral.</p>
+        </details>
+        <details>
+          <summary>What does Evenkeel cost?</summary>
+          <p>Employers pay a fixed monthly price for each eligible employee. Coaching and the savings account are free for employees.</p>
+        </details>
+        <details>
+          <summary>How long does launch take?</summary>
+          <p>Most employers launch in four weeks. The payroll connection is the longest step.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="close" id="demo" aria-labelledby="close-title">
+      <div class="wrap">
+        <h2 id="close-title">See Evenkeel with your own workforce numbers</h2>
+        <p class="lede">A 30-minute demo shows the employee app, the employer report, and the price for your headcount.</p>
+        <a class="btn btn-dark" href="#demo">Book a demo</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <span class="logo">Evenkeel</span>
+      <p>Evenkeel is a fictional company made to show the debt management plan savings calculator on a realistic partner website. The people, customers, prices, and figures on this page are not real.</p>
+      <p>The calculator gives an estimate for education only. It is not an offer, an approval, or a guarantee of savings.</p>
+    </div>
+  </footer>
+
+  <!-- Partner embed: one slot and one script tag. -->
+  <script>
+    (function () {
+      // Local test: the widget is on port 8770 (a different origin). Hosted: the site root.
+      var host = location.port === '8771' ? 'http://127.0.0.1:8770/' : new URL('../../', location.href).href;
+      var s = document.createElement('script');
+      s.src = host + 'embed.js';
+      s.async = true;
+      s.setAttribute('data-partner', 'evenkeel');
+      s.setAttribute('data-target', '#calc-slot');
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>

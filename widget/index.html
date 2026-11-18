@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Debt Management Plan Savings Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link id="font-css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="widget.css">
+</head>
+<body>
+  <main class="w" id="app" aria-busy="true">
+
+    <header class="w-head">
+      <img class="w-logo" id="logo" alt="" hidden>
+      <ol class="w-steps" aria-label="Progress">
+        <li class="w-step" data-step="1" aria-current="step"><button type="button" class="w-step-btn" id="step1-btn" disabled><span class="w-step-dot">1</span>Your debt</button></li>
+        <li class="w-step" data-step="2"><span class="w-step-dot">2</span>Your savings</li>
+      </ol>
+    </header>
+
+    <!-- STEP 1: INPUTS -->
+    <section class="w-panel" id="step1" aria-labelledby="title">
+      <h1 class="w-title" id="title">See how much a debt management plan could save you</h1>
+      <p class="w-sub" id="subtitle"></p>
+
+      <form class="w-form" id="form" novalidate>
+        <div class="w-field">
+          <label class="w-label" for="debt">How much do you owe on credit cards?</label>
+          <div class="w-money w-money--xl" id="debt-box">
+            <span class="w-money-sign" aria-hidden="true">$</span>
+            <input id="debt" name="debt" type="text" inputmode="numeric" autocomplete="off" placeholder="0" aria-describedby="debt-help debt-error">
+          </div>
+          <input id="debt-range" class="w-range" type="range" aria-label="Total credit card debt">
+          <p class="w-help" id="debt-help">Add up the balances on all your cards.</p>
+          <p class="w-error" id="debt-error" role="alert" hidden></p>
+        </div>
+
+        <div class="w-field">
+          <label class="w-label" for="apr">Average interest rate</label>
+          <div class="w-apr">
+            <div class="w-money w-money--sm" id="apr-box">
+              <input id="apr" name="apr" type="text" inputmode="decimal" autocomplete="off" aria-describedby="apr-help apr-error">
+              <span class="w-money-sign" aria-hidden="true">% APR</span>
+            </div>
+            <button type="button" class="w-chip" id="apr-reset" hidden>Use U.S. average</button>
+          </div>
+          <p class="w-help" id="apr-help"></p>
+          <p class="w-error" id="apr-error" role="alert" hidden></p>
+        </div>
+
+        <button type="submit" class="w-btn w-btn--primary w-btn--block" id="submit">See my savings</button>
+        <p class="w-fineprint">This is an estimate, not an offer or a guarantee of savings.<br>No name, email, or credit check needed.</p>
+      </form>
+    </section>
+
+    <!-- STEP 2: RESULTS -->
+    <section class="w-panel" id="step2" hidden aria-labelledby="result-title">
+      <div class="w-back-row">
+        <button type="button" class="w-back" id="back">
+          <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Edit my numbers
+        </button>
+        <p class="w-summary" id="summary"></p>
+      </div>
+
+      <h2 class="w-result" id="result-title" tabindex="-1"></h2>
+      <p class="w-result-sub" id="result-sub" hidden></p>
+      <p class="w-sr" id="live" aria-live="polite"></p>
+
+      <figure class="w-timeline" id="timeline" aria-labelledby="timeline-cap">
+        <figcaption class="w-label" id="timeline-cap">Time to be debt-free</figcaption>
+        <div class="w-bar-row">
+          <span class="w-bar-name">Now</span>
+          <div class="w-bar-track"><div class="w-bar w-bar--now" id="bar-now"></div></div>
+          <span class="w-bar-val" id="bar-now-val"></span>
+        </div>
+        <div class="w-bar-row">
+          <span class="w-bar-name">With a plan</span>
+          <div class="w-bar-track"><div class="w-bar w-bar--plan" id="bar-plan"></div></div>
+          <span class="w-bar-val" id="bar-plan-val"></span>
+        </div>
+      </figure>
+
+      <div class="w-term">
+        <span class="w-label" id="term-label">Plan length</span>
+        <div class="w-seg" role="radiogroup" aria-labelledby="term-label" id="term-seg"></div>
+      </div>
+
+      <table class="w-compare">
+        <caption class="w-sr">Your costs now compared with a debt management plan</caption>
+        <thead><tr><td></td><th scope="col">Now</th><th scope="col" class="w-plan-col">With a plan</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Monthly payment</th><td id="c-pay"></td><td id="d-pay" class="w-plan-col"></td></tr>
+          <tr><th scope="row">Interest and fees</th><td id="c-cost"></td><td id="d-cost" class="w-plan-col"></td></tr>
+          <tr class="w-total"><th scope="row">Total you pay</th><td id="c-tot"></td><td id="d-tot" class="w-plan-col"></td></tr>
+        </tbody>
+      </table>
+
+      <ul class="w-notes" id="notes"></ul>
+
+      <div class="w-cta">
+        <div class="w-cta-copy">
+          <p class="w-cta-title" id="cta-title">Get your exact numbers</p>
+          <p class="w-cta-text" id="cta-text">A certified credit counselor can review your cards with you.</p>
+        </div>
+        <a class="w-btn w-btn--primary w-cta-btn" id="cta" href="#" target="_top">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+          <span id="cta-label">Call</span>
+        </a>
+        <p class="w-cta-note" id="cta-note"></p>
+      </div>
+    </section>
+
+    <footer class="w-foot" id="foot" hidden>
+      <p class="w-powered" id="powered" hidden></p>
+    </footer>
+  </main>
+
+  <script src="calculator.js"></script>
+  <script src="widget.js"></script>
+</body>
+</html>

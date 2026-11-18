@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "partnerId": "sample-partner",
+  "partnerName": "Sample Credit Union",
+  "branding": {
+    "primaryColor": "#5B2A86",
+    "accentColor": "#C2661B",
+    "textColor": "#221A2A",
+    "mutedTextColor": "#6C6175",
+    "backgroundColor": "#FFFDF9",
+    "surfaceColor": "#F4EEF8",
+    "borderColor": "#E3D8EC",
+    "fontFamily": "'Fraunces', Georgia, serif",
+    "fontUrl": "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&display=swap",
+    "borderRadius": 6
+  },
+  "content": {
+    "title": "How much could you save on credit card debt?"
+  },
+  "cta": {
+    "title": "Talk it through with a counselor",
+    "phoneDisplay": "1-800-000-0001",
+    "phoneHref": "+18000000001"
+  }
+}
